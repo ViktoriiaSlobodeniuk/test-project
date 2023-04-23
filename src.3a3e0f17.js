@@ -19,4 +19,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),t=u(require("react-dom/client")),r=u(require("./App"));function u(e){return e&&e.__esModule?e:{default:e}}require("./styles.css"),t.default.createRoot(document.getElementById("app")).render(e.default.createElement(e.default.StrictMode,null,e.default.createElement(r.default,null)));
 },{"react":"n8MK","react-dom/client":"NdAl","./App":"lY9v","./styles.css":"Tnu0"}]},{},["Focm"], null)
-//# sourceMappingURL=/src.3a3e0f17.js.map
+//# sourceMappingURL=/test-project/src.3a3e0f17.js.map
