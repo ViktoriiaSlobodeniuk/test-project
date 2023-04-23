@@ -1,4 +1,3 @@
-
 import React from "react";
 
 class App extends React.Component {
@@ -6,9 +5,7 @@ class App extends React.Component {
     const { name } = this.props;
     return (
       <>
-        <h1>
-          Hello {name}
-        </h1>
+        <h1>Hello {name}!</h1>
       </>
     );
   }
