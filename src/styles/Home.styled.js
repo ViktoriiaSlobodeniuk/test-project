@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink as _NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
   display: flex;
@@ -62,5 +63,9 @@ export const CardContent = styled.div`
   line-height: 24px;
   text-transform: uppercase;
 
+  color: #ebd8ff;
+`;
+
+export const NavLink = styled(_NavLink)`
   color: #ebd8ff;
 `;

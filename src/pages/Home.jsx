@@ -5,7 +5,7 @@ import { FetchApi } from '../components/FetchApi';
 import { FollowBtn, UnFollowBtn } from '../components/FollowBtn';
 import { CardContent, Item, List } from '../styles/Home.styled';
 import { DecorPart } from '../components/DecorPart';
-
+import { NavLink } from '../styles/Home.styled';
 const Home = () => {
   const [userCards, setUserCards] = useState([]);
 
@@ -22,7 +22,6 @@ const Home = () => {
 
   return (
     <>
-      <h1>home page</h1>
       <div>
         <List>
           {userCards.map(({ user, followers, tweets, avatar, id }) => {
@@ -31,7 +30,9 @@ const Home = () => {
                 <DecorPart />
                 <CardContent>
                   <p>{user}</p>
-                  <p>{tweets.toLocaleString('en-US')} tweets </p>
+                  <NavLink to="/tweets">
+                    {tweets.toLocaleString('en-US')} tweets
+                  </NavLink>
                   <p>{followers.toLocaleString('en-US')} followers</p>
                 </CardContent>
                 {0 ? <FollowBtn /> : <UnFollowBtn />}
