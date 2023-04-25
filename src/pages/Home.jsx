@@ -2,24 +2,31 @@ import React from 'react';
 
 import { useEffect, useState } from 'react';
 import { FetchApi } from '../components/FetchApi';
-import { FollowBtn, UnFollowBtn } from '../components/FollowBtn';
+import { FollowBtn, LoadMoreBtn, UnFollowBtn } from '../components/Buttons';
 import { CardContent, Item, List } from '../styles/Home.styled';
 import { DecorPart } from '../components/DecorPart';
 import { NavLink } from '../styles/Home.styled';
 const Home = () => {
   const [userCards, setUserCards] = useState([]);
+  const [pageCount, setPageCount] = useState('1');
+  // console.log('pageCount', pageCount);
 
   useEffect(() => {
-    FetchApi('users')
+    FetchApi(pageCount)
       .then(resp => {
-        console.log('fetch:', resp.data);
+        // console.log('fetch:', resp.data);
         setUserCards(resp.data);
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [pageCount]);
 
+  const handleClick = () => {
+    // console.log('load more btn');
+    setPageCount((parseInt(pageCount) + 1).toString());
+  };
+  // console.log('newPageCount', pageCount, typeof pageCount);
   return (
     <>
       <div>
@@ -40,10 +47,9 @@ const Home = () => {
             );
           })}
         </List>
+        <LoadMoreBtn onLoadMoreClick={handleClick} />
       </div>
     </>
   );
 };
 export default Home;
-
-//   const location = useLocation(); for what&&!
