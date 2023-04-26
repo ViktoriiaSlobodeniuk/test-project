@@ -10,14 +10,15 @@ import { useLocation } from 'react-router-dom';
 const Home = () => {
   const [userCards, setUserCards] = useState([]);
   const [pageCount, setPageCount] = useState('1');
+  const [isRespEmpty, setIsRespEmpty] = useState(false);
   const location = useLocation();
-
-  // console.log('pageCount', pageCount);
 
   useEffect(() => {
     FetchApi(pageCount)
       .then(resp => {
-        // console.log('fetch:', resp.data);
+        if (resp.data.length === 0) {
+          setIsRespEmpty(true);
+        }
         setUserCards([...userCards, ...resp.data]);
       })
       .catch(error => {
@@ -26,10 +27,9 @@ const Home = () => {
   }, [pageCount]);
 
   const handleClick = () => {
-    // console.log('load more btn');
     setPageCount((parseInt(pageCount) + 1).toString());
   };
-  // console.log('newPageCount', pageCount, typeof pageCount);
+
   return (
     <>
       <Container>
@@ -51,7 +51,11 @@ const Home = () => {
             );
           })}
         </List>
-        <LoadMoreBtn onLoadMoreClick={handleClick} />
+        {isRespEmpty ? (
+          'End of collection'
+        ) : (
+          <LoadMoreBtn onLoadMoreClick={handleClick} />
+        )}
       </Container>
     </>
   );
