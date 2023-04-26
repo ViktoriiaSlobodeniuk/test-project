@@ -1,19 +1,36 @@
 import React from 'react';
 
 import { useEffect, useState } from 'react';
-import { FetchApi } from '../components/FetchApi';
+import {
+  FetchApi,
+  increaseFollowers,
+  decreaseFollowers,
+} from '../components/FetchApi';
 import { FollowBtn, LoadMoreBtn, UnFollowBtn } from '../components/Buttons';
 import { CardContent, Container, Item, List } from '../styles/Home.styled';
 import { DecorPart } from '../components/DecorPart';
 import { NavLink, Avatar } from '../styles/Home.styled';
 import { useLocation } from 'react-router-dom';
+
 const Home = () => {
   const [userCards, setUserCards] = useState([]);
   const [pageCount, setPageCount] = useState('1');
   const [isRespEmpty, setIsRespEmpty] = useState(false);
+  const [followedUsers, setFollowedUsers] = useState(
+    JSON.parse(localStorage.getItem('followedUsers')) ?? []
+  );
+
   const location = useLocation();
 
   useEffect(() => {
+    console.log('followedUsers useEffect');
+
+    localStorage.setItem('followedUsers', JSON.stringify(followedUsers));
+    console.log('ололол', followedUsers);
+  }, [followedUsers]);
+
+  useEffect(() => {
+    console.log('pageCount useEffect');
     FetchApi(pageCount)
       .then(resp => {
         if (resp.data.length === 0) {
@@ -26,8 +43,34 @@ const Home = () => {
       });
   }, [pageCount]);
 
-  const handleClick = () => {
+  const handleLoadMore = () => {
     setPageCount((parseInt(pageCount) + 1).toString());
+  };
+
+  const handleAddFollower = userId => {
+    increaseFollowers(userId);
+    setFollowedUsers([...followedUsers, userId]);
+    setUserCards(
+      userCards.map(userCard => {
+        if (userCard.id === userId) {
+          return { ...userCard, followers: userCard.followers + 1 };
+        }
+        return userCard;
+      })
+    );
+  };
+
+  const handleDeleteFollower = userId => {
+    decreaseFollowers(userId);
+    setFollowedUsers([...followedUsers.filter(id => id !== userId)]);
+    setUserCards(
+      userCards.map(userCard => {
+        if (userCard.id === userId) {
+          return { ...userCard, followers: userCard.followers - 1 };
+        }
+        return userCard;
+      })
+    );
   };
 
   return (
@@ -46,7 +89,13 @@ const Home = () => {
                   </NavLink>
                   <p>{followers.toLocaleString('en-US')} followers</p>
                 </CardContent>
-                {0 ? <FollowBtn /> : <UnFollowBtn />}
+                {followedUsers.includes(id) ? (
+                  <UnFollowBtn
+                    onFollowingClick={() => handleDeleteFollower(id)}
+                  />
+                ) : (
+                  <FollowBtn onFollowClick={() => handleAddFollower(id)} />
+                )}
               </Item>
             );
           })}
@@ -54,7 +103,7 @@ const Home = () => {
         {isRespEmpty ? (
           'End of collection'
         ) : (
-          <LoadMoreBtn onLoadMoreClick={handleClick} />
+          <LoadMoreBtn onLoadMoreClick={handleLoadMore} />
         )}
       </Container>
     </>

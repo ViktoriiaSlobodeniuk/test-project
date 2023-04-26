@@ -1,28 +1,26 @@
 import React from 'react';
 import {
+  Backbutton,
   FollowButton,
   LoadMoreButton,
   UnfollowButton,
 } from '../styles/Buttons.styled';
-// import { useLocation } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-// export const BackButton = () => {
-//   const location = useLocation();
-//   const backLink = location.state?.from ?? '/';
-//   return (
-//     <button type="button">
-//       <NavLink to={backLink}>back</NavLink>
-//     </button>
-//   );
-// };
-
-export const FollowBtn = () => {
-  return <FollowButton>follow</FollowButton>;
+export const BackBtn = ({ to, children }) => {
+  return (
+    <Backbutton type="button">
+      <Link to={to}>{children}</Link>
+    </Backbutton>
+  );
 };
 
-export const UnFollowBtn = () => {
-  return <UnfollowButton>following</UnfollowButton>;
+export const FollowBtn = ({ onFollowClick }) => {
+  return <FollowButton onClick={onFollowClick}>follow</FollowButton>;
+};
+
+export const UnFollowBtn = ({ onFollowingClick }) => {
+  return <UnfollowButton onClick={onFollowingClick}>following</UnfollowButton>;
 };
 
 export const LoadMoreBtn = ({ onLoadMoreClick }) => {

@@ -1,22 +1,17 @@
-import React from 'react';
-// import { BackButton } from '../components/Buttons';
-import { NavLink } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { BackBtn } from '../components/Buttons';
 import { useLocation } from 'react-router-dom';
-
-// export const BackButton = () => {
-//   const location = useLocation();
-//   const backLink = location.state?.from ?? '/';
-//   return <NavLink to={backLink}>back</NavLink>;
-// };
+import { Container } from '../styles/Home.styled';
 
 const Tweets = () => {
   const location = useLocation();
-  const backLink = location.state?.from ? location.state?.from : '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
+
   return (
-    <>
-      <h1>tweets</h1>
-      {/* <NavLink to={backLink}>back</NavLink> */}
-    </>
+    <Container>
+      <BackBtn to={backLinkHref.current}>Back</BackBtn>
+      <h1>There may be tweets from the author</h1>
+    </Container>
   );
 };
 export default Tweets;
