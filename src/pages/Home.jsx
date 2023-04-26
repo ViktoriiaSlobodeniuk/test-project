@@ -1,16 +1,10 @@
 import React from 'react';
-
 import { useEffect, useState } from 'react';
-import {
-  FetchApi,
-  increaseFollowers,
-  decreaseFollowers,
-} from '../components/FetchApi';
-import { FollowBtn, LoadMoreBtn, UnFollowBtn } from '../components/Buttons';
-import { CardContent, Container, Item, List } from '../styles/Home.styled';
-import { DecorPart } from '../components/DecorPart';
-import { NavLink, Avatar } from '../styles/Home.styled';
-import { useLocation } from 'react-router-dom';
+import { increaseFollowers, decreaseFollowers } from '../components/FetchApi';
+import { FetchUsersApi } from '../components/FetchApi';
+import { LoadMoreBtn } from '../components/Buttons';
+import { Container } from '../styles/Container.styled';
+import { CardsList } from '../components/CardsList';
 
 const Home = () => {
   const [userCards, setUserCards] = useState([]);
@@ -20,18 +14,8 @@ const Home = () => {
     JSON.parse(localStorage.getItem('followedUsers')) ?? []
   );
 
-  const location = useLocation();
-
   useEffect(() => {
-    console.log('followedUsers useEffect');
-
-    localStorage.setItem('followedUsers', JSON.stringify(followedUsers));
-    console.log('ололол', followedUsers);
-  }, [followedUsers]);
-
-  useEffect(() => {
-    console.log('pageCount useEffect');
-    FetchApi(pageCount)
+    FetchUsersApi(pageCount)
       .then(resp => {
         if (resp.data.length === 0) {
           setIsRespEmpty(true);
@@ -42,6 +26,10 @@ const Home = () => {
         console.log(error);
       });
   }, [pageCount]);
+
+  useEffect(() => {
+    localStorage.setItem('followedUsers', JSON.stringify(followedUsers));
+  }, [followedUsers]);
 
   const handleLoadMore = () => {
     setPageCount((parseInt(pageCount) + 1).toString());
@@ -74,39 +62,19 @@ const Home = () => {
   };
 
   return (
-    <>
-      <Container>
-        <List>
-          {userCards.map(({ user, followers, tweets, id, avatar }) => {
-            return (
-              <Item key={id}>
-                <DecorPart />
-                <Avatar src={avatar} alt="avatar" width={55} />
-                <CardContent>
-                  <p>{user}</p>
-                  <NavLink to="/tweets" state={{ from: location }}>
-                    {tweets.toLocaleString('en-US')} tweets
-                  </NavLink>
-                  <p>{followers.toLocaleString('en-US')} followers</p>
-                </CardContent>
-                {followedUsers.includes(id) ? (
-                  <UnFollowBtn
-                    onFollowingClick={() => handleDeleteFollower(id)}
-                  />
-                ) : (
-                  <FollowBtn onFollowClick={() => handleAddFollower(id)} />
-                )}
-              </Item>
-            );
-          })}
-        </List>
-        {isRespEmpty ? (
-          'End of collection'
-        ) : (
-          <LoadMoreBtn onLoadMoreClick={handleLoadMore} />
-        )}
-      </Container>
-    </>
+    <Container>
+      <CardsList
+        cardsArr={userCards}
+        followedUsers={followedUsers}
+        handleAddFollower={handleAddFollower}
+        handleDeleteFollower={handleDeleteFollower}
+      />
+      {isRespEmpty ? (
+        'End of collection'
+      ) : (
+        <LoadMoreBtn onLoadMoreClick={handleLoadMore} />
+      )}
+    </Container>
   );
 };
 export default Home;

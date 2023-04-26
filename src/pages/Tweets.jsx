@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { BackBtn } from '../components/Buttons';
 import { useLocation } from 'react-router-dom';
-import { Container } from '../styles/Home.styled';
+import { Container } from '../styles/Container.styled';
 
 const Tweets = () => {
   const location = useLocation();

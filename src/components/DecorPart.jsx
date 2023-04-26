@@ -1,12 +1,11 @@
 import React from 'react';
-
 import {
   ContextPic,
   Ellipse,
   EllipseColor,
   Line,
   Logo,
-} from '../styles/Home.styled';
+} from '../styles/DecorPart.styled';
 import ellipse from '../images/ellipse.png';
 import picture from '../images/picture.png';
 import ellipse_color from '../images/ellipse_color.png';

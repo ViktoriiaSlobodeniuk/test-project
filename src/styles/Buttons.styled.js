@@ -22,12 +22,7 @@ export const FollowButton = styled.button`
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
-  /* identical to box height */
-
   text-transform: uppercase;
-
-  /* Landing/button text color */
-
   color: #373737;
   cursor: pointer;
 `;
@@ -50,16 +45,10 @@ export const UnfollowButton = styled.button`
   border-radius: 10.3108px;
 
   font-family: 'Montserrat';
-
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
-  /* identical to box height */
-
   text-transform: uppercase;
-
-  /* Landing/button text color */
-
   color: #373737;
   cursor: pointer;
 `;
