@@ -5,7 +5,9 @@ import { Container } from '../styles/Container.styled';
 
 const Tweets = () => {
   const location = useLocation();
-  const backLinkHref = useRef(location.state?.from ?? '/');
+  const backLinkHref = useRef(
+    location.state?.from ? location.state?.from : '/'
+  );
 
   return (
     <Container>

@@ -11,7 +11,9 @@ const Home = () => {
   const [pageCount, setPageCount] = useState('1');
   const [isRespEmpty, setIsRespEmpty] = useState(false);
   const [followedUsers, setFollowedUsers] = useState(
-    JSON.parse(localStorage.getItem('followedUsers')) ?? []
+    localStorage.getItem('followedUsers')
+      ? JSON.parse(localStorage.getItem('followedUsers'))
+      : []
   );
 
   useEffect(() => {
