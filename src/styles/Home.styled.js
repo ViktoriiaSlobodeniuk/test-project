@@ -5,8 +5,11 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 20px;
 `;
 export const Item = styled.li`
+  font-family: 'Montserrat';
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -59,13 +62,12 @@ export const Logo = styled.img`
   left: 20px;
 `;
 export const CardContent = styled.div`
-  /* font-family: 'Montserrat'; */
   /* font-style: normal; */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-bottom: 26px;
+  /* margin-bottom: 26px; */
 
   font-weight: 500;
   font-size: 20px;
@@ -77,4 +79,14 @@ export const CardContent = styled.div`
 
 export const NavLink = styled(_NavLink)`
   color: #ebd8ff;
+`;
+export const Container = styled.div`
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

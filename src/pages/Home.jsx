@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { FetchApi } from '../components/FetchApi';
 import { FollowBtn, LoadMoreBtn, UnFollowBtn } from '../components/Buttons';
-import { CardContent, Item, List } from '../styles/Home.styled';
+import { CardContent, Container, Item, List } from '../styles/Home.styled';
 import { DecorPart } from '../components/DecorPart';
 import { NavLink, Avatar } from '../styles/Home.styled';
 import { useLocation } from 'react-router-dom';
@@ -32,7 +32,7 @@ const Home = () => {
   // console.log('newPageCount', pageCount, typeof pageCount);
   return (
     <>
-      <div>
+      <Container>
         <List>
           {userCards.map(({ user, followers, tweets, id, avatar }) => {
             return (
@@ -52,7 +52,7 @@ const Home = () => {
           })}
         </List>
         <LoadMoreBtn onLoadMoreClick={handleClick} />
-      </div>
+      </Container>
     </>
   );
 };

@@ -18,6 +18,7 @@ export const FollowButton = styled.button`
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
 
+  font-family: 'Montserrat';
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
@@ -28,6 +29,7 @@ export const FollowButton = styled.button`
   /* Landing/button text color */
 
   color: #373737;
+  cursor: pointer;
 `;
 export const UnfollowButton = styled.button`
   display: flex;
@@ -47,6 +49,8 @@ export const UnfollowButton = styled.button`
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
 
+  font-family: 'Montserrat';
+
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
@@ -57,4 +61,16 @@ export const UnfollowButton = styled.button`
   /* Landing/button text color */
 
   color: #373737;
+  cursor: pointer;
+`;
+
+export const LoadMoreButton = styled.button`
+  width: 400px;
+  height: 50px;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 `;

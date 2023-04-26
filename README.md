@@ -1,32 +1,29 @@
 # test-project
 
-Empty project.
+Проект "test-project" створено в рамках курсу "Career skills. Tech part". Суть
+роботи полягає у своренні розмітки карток твітів та реалізації інтерактивності
+елементів у взаємоції з користувачем (при клікові на кнопку).
 
-## Building and running on localhost
+До реалізації залучено наступні технології: HTML, CSS, JS, Parcel, Axios, React,
+Babel та styled-components.
 
-First install dependencies:
+REST API зімітовано за допомогою UI-сервісу mockapi.io (https://mockapi.io/).
 
-```sh
-npm install
-```
+## Опис функціоналу.
 
-To run in hot module reloading mode:
+1. При першому завантаженні проекту відображається розмітка перших чотирьох
+   карток твітів.
+2. Внизу сторінки знаходиться кнопка "Load More", яка надає можливість
+   завантажити додаткову партію карток, доступних на бекенді.
+3. Наступним інтерактивним елементов є кнопка "Follow" в середині кожної з
+   карток. Натискання на неї реалізує збільшення кількості фоловерів, з
+   урахуванням підписки користувача (+1) та зміну оформлення та функціоналу
+   кнопки "Follow" на "Following". Повторне натискання на кнопку "Following"
+   повертає її текст та колір до початкового стану.
+4. В проекті реалізовано маршрутизацію між основною сторінкою з картками
+   (компонент Номе), та сторінкою з відображенням твітів (компонент Тweets ). На
+   сторінці tweets реалізовано кнопку "Back", яка веде на головну сторінку.
 
-```sh
-npm start
-```
+## developer
 
-To create a production build:
-
-```sh
-npm run build-prod
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
-
+Вікторія Слободенюк <v.m.slobodeniuk@gmail.com>

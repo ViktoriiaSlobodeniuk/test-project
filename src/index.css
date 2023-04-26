@@ -1,11 +1,8 @@
 @import-normalize;
 
 body {
-  font-family: sans-serif;
-  line-height: 1.5;
-  padding-left: 100px;
+  background-color: rgba(151, 124, 212, 0.5);
 }
-
 h1,
 h2,
 h3,

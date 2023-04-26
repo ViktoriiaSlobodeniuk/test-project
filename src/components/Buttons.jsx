@@ -1,5 +1,9 @@
 import React from 'react';
-import { FollowButton, UnfollowButton } from '../styles/FollowBtns.styled';
+import {
+  FollowButton,
+  LoadMoreButton,
+  UnfollowButton,
+} from '../styles/Buttons.styled';
 // import { useLocation } from 'react-router-dom';
 // import { NavLink } from 'react-router-dom';
 
@@ -22,5 +26,5 @@ export const UnFollowBtn = () => {
 };
 
 export const LoadMoreBtn = ({ onLoadMoreClick }) => {
-  return <button onClick={onLoadMoreClick}>Load More</button>;
+  return <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>;
 };
